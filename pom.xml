@@ -123,6 +123,16 @@
       <version>${junit-jupiter.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.oracle.substratevm</groupId>
+      <artifactId>library-support</artifactId>
+      <version>19.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>bson</artifactId>
+      <version>4.2.0-beta1</version>
+    </dependency>
   </dependencies>
 
   <build>
