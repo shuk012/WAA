@@ -1,15 +1,12 @@
 package com.waa.mongodb;
 
-import com.mongodb.MongoClientSettings;
 import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCursor;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
-import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
 import lombok.NoArgsConstructor;
 import org.bson.Document;
 import org.slf4j.Logger;
