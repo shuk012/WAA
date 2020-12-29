@@ -23,20 +23,18 @@ public class MongoDBVerticle extends AbstractVerticle {
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
     var eventBus = vertx.eventBus();
-    try (MongoClient mongoClient = MongoClients.create()) {
-      final ClientSession mongoSession = mongoClient.startSession();
+      final MongoClient mongoClient;
+      mongoClient = MongoClients.create();
+      final ClientSession mongoSession = null;
       eventBus.consumer("mongodb.get", message -> {
         String collectionName = message.body().toString();
+        logger.info("collection being listed is {}", collectionName);
         JsonArray response = get(collectionName, mongoClient, mongoSession);
         if (!response.isEmpty()) {
           message.reply(response.encode());
         }
       });
-    }catch (Exception e){
-      logger.error(e.getMessage());
-      startPromise.fail(e.getMessage());
-    }
-    startPromise.complete();
+    startPromise.tryComplete();
   }
 
   public static JsonArray get(String collectionName, MongoClient mongoClient, ClientSession mongoSession) {

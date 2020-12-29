@@ -53,7 +53,7 @@ public class MainVerticle extends AbstractVerticle {
       .requestHandler(router)
       .exceptionHandler(error -> logger.error("HTTP Server error: ", error)).listen(8888, http -> {
       if (http.succeeded()) {
-        startPromise.complete();
+        startPromise.tryComplete();
         logger.info("HTTP server started on port 8888");
       } else {
         startPromise.fail(http.cause());

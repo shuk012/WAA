@@ -1,11 +1,8 @@
 package com.waa.workers;
 
-import com.waa.mongodb.MongoDBVerticle;
 import io.netty.handler.codec.http.HttpHeaderValues;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.http.HttpHeaders;
-import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import org.slf4j.Logger;
