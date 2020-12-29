@@ -1,8 +1,5 @@
 package com.waa.casting;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.ClientSession;
 import com.waa.workers.MDBVerticle;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
@@ -43,15 +40,15 @@ public class MainVerticle extends AbstractVerticle {
           // Ignore completed response
           return;
         }
-        logger.error("Route Error:", routingContext.failure());
+        logger.error("Route Error: {}", routingContext.failure().getLocalizedMessage());
         routingContext.response()
           .setStatusCode(500)
           .end(new JsonObject().put("message", "Something went wrong :(").toBuffer());
       });
     MDBVerticle.attach(router);
-    vertx.createHttpServer().requestHandler(req -> req.response()
-      .putHeader("content-type", "text/plain")
-      .end("Hello from Vert.x!")).listen(8888, http -> {
+    vertx.createHttpServer()
+      .requestHandler(router)
+      .exceptionHandler(error -> logger.error("HTTP Server error: ", error)).listen(8888, http -> {
       if (http.succeeded()) {
         startPromise.complete();
         logger.info("HTTP server started on port 8888");

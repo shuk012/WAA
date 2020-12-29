@@ -38,7 +38,8 @@ public class MongoDB {
     for (Document document : mongoClient.getDatabase(DB)
       .getCollection(COLLECTION)
       .find()) {
-      response.add(document.toJson());
+      logger.info("Document - {}",document.toJson());
+      response.add(JsonObject.mapFrom(document.toJson()));
     }
     return response;
   }
