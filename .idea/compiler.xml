@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="WAA" target="11" />
+      <module name="WAA" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
