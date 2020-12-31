@@ -18,7 +18,7 @@
 
     <vertx.version>4.0.1-SNAPSHOT</vertx.version>
     <junit-jupiter.version>5.4.0</junit-jupiter.version>
-    <jib-maven-plugin.version>2.7.0</jib-maven-plugin.version>
+    <jib-maven-plugin.version>1.8.0</jib-maven-plugin.version>
 
     <main.verticle>com.waa.casting.MainVerticle</main.verticle>
 
@@ -149,9 +149,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven-compiler-plugin.version}</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-          <verbose>true</verbose>
+          <release>11</release>
         </configuration>
       </plugin>
       <plugin>
