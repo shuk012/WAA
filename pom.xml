@@ -150,9 +150,6 @@
         <version>${maven-compiler-plugin.version}</version>
         <configuration>
           <release>13</release>
-          <compilerArgs>
-            <arg>--enable-preview</arg>
-          </compilerArgs>
           <forceJavacCompilerUse>true</forceJavacCompilerUse>
           <parameters>true</parameters>
         </configuration>
