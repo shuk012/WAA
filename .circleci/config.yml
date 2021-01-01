@@ -6,12 +6,21 @@ version: 2.1
 workflows:
   maven_test:
     jobs:
-      - maven/test:
-          command: '-X clean'
-      - maven/test:
-          command: '-X compile'
-      - docker/publish:
-          image: nishshukla/casting
-          update-description: true
-          docker-username: ${<<parameters.DOCKERHUB_USERNAME>>}
-          docker-password: ${<<parameters.DOCKERHUB_PASSWORD>>}
+      build:
+        parameters:
+          DOCKERHUB_USERNAME:
+            type: env_var_name
+            default: DOCKERHUB_USERNAME
+          DOCKERHUB_PASSWORD:
+            type: env_var_name
+            default: DOCKERHUB_PASSWORD
+        steps:
+          - maven/test:
+              command: '-X clean'
+          - maven/test:
+              command: '-X compile'
+          - docker/publish:
+              image: nishshukla/casting
+              update-description: true
+              docker-username: ${<<parameters.DOCKERHUB_USERNAME>>}
+              docker-password: ${<<parameters.DOCKERHUB_PASSWORD>>}
