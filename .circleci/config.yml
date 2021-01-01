@@ -10,10 +10,10 @@ workflows:
           command: '-X clean'
       - maven/test:
           command: 'com.google.cloud.tools:jib-maven-plugin:0.9.7:dockerBuild -X'
-      dockerize:
-        steps:
-          - setup_remote_docker:
-            version: 19.03.13
+      - dockerize:
+          steps:
+            - setup_remote_docker:
+              version: 19.03.13
             - run:
                 name: "Push and Run"
                 command: |
