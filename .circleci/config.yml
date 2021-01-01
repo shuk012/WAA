@@ -8,3 +8,8 @@ workflows:
     jobs:
       - maven/test:
           command: '-X clean'
+      - maven/test:
+          command: '-X compile'
+      - docker/publish:
+          image: nishshukla/casting
+          update-description: true
