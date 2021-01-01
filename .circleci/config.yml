@@ -14,11 +14,11 @@ workflows:
     jobs:
       - push:
          steps:
-            - setup_remote_docker:
-                version: 19.03.13
-                docker_layer_caching: true
+          - setup_remote_docker:
+            version: 19.03.13
+            docker_layer_caching: true
             - run:
-                name: "Push and Run"
-                command: |
-                  echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                  docker push nishshukla/casting/com.waa-casting:latest
+               name: "Push and Run"
+               command: |
+                echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                docker push nishshukla/casting/com.waa-casting:latest
