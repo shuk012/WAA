@@ -1,13 +1,10 @@
-version: 2.1
-
 orbs:
-  maven: circleci/maven@0.0.12
-  java11: drift/java11@0.1.1
-
+  maven: circleci/maven@x.y
+version: 2.1
 workflows:
   maven_test:
     jobs:
-      - maven/test
-          command: '-X clean' # checkout, build, test, and upload test results
-      - maven/test
-          command: '-X package' # checkout, build, test, and upload test results
+      - maven/test:
+          command: '-X clean'
+      - maven/test:
+          command: '-X package'
