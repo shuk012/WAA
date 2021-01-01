@@ -9,7 +9,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: ./mvnw clean
+      - run: sudo ./mvnw clean
 
   build:
     docker:
@@ -19,7 +19,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: ./mvnw package
+      - run: sudo ./mvnw compile
 
   test:
     docker:
