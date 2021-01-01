@@ -1,13 +1,6 @@
 orbs:
   maven: circleci/maven@1.0.3
   docker: circleci/docker@1.5.0
-  jobs:
-    push:
-      executor: docker/machine
-      steps:
-        - checkout
-        - docker/push:
-            images: 'nishshukla/casting/com.waa-casting'
 
 version: 2.1
 workflows:
@@ -15,8 +8,3 @@ workflows:
     jobs:
       - maven/test:
           command: '-X clean'
-      - maven/test:
-          command: 'com.google.cloud.tools:jib-maven-plugin:0.9.7:dockerBuild -X'
-  push-images:
-    jobs:
-      - push
