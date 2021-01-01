@@ -13,7 +13,7 @@ workflows:
 
   build-docker-image-only:
     jobs:
-      - pull:
+      - push:
           executor: docker/machine
           steps:
             - checkout
