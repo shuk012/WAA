@@ -12,7 +12,7 @@ workflows:
           command: 'com.google.cloud.tools:jib-maven-plugin:0.9.7:dockerBuild -X'
   push-images:
     jobs:
-      - push:
+      - docker/push:
          steps:
           - setup_remote_docker:
              version: 19.03.13
