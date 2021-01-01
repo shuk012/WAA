@@ -19,7 +19,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: sudo mvn compile
+      - run: mvn compile
 
   test:
     docker:
@@ -28,7 +28,16 @@ jobs:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      - run: sudo mvn test
+      - run: mvn test
+
+  deploy:
+    docker:
+      - image: circleci/openjdk:stretch
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - run: mvn package
 
 workflows:
   version: 2
