@@ -1,6 +1,5 @@
 orbs:
   maven: circleci/maven@1.0.3
-  docker: circleci/docker@1.5.0
 
 version: 2.1
 workflows:
@@ -10,8 +9,6 @@ workflows:
           command: '-X clean'
       - maven/test:
           command: 'com.google.cloud.tools:jib-maven-plugin:0.9.7:dockerBuild -X'
-  push-images:
-    jobs:
       build:
         docker:
           - image: circleci/golang:1.15
