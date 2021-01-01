@@ -6,14 +6,12 @@ version: 2.1
 workflows:
   maven_test:
     jobs:
-      build:
-        steps:
-          - maven/test:
-              command: '-X clean'
-          - maven/test:
-              command: '-X compile'
-          - docker/publish:
-              image: nishshukla/casting
-              update-description: true
-              docker-username: ${DOCKERHUB_USERNAME}
-              docker-password: ${DOCKERHUB_PASSWORD}
+      - maven/test:
+          command: '-X clean'
+      - maven/test:
+          command: '-X compile'
+      - docker/publish:
+          image: nishshukla/casting
+          update-description: true
+          docker-username: ${DOCKERHUB_USERNAME}
+          docker-password: ${DOCKERHUB_PASSWORD}
