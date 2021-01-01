@@ -1,6 +1,7 @@
 orbs:
   maven: circleci/maven@1.0.3
-  aws-ecr: circleci/aws-ecr@6.15.2
+  docker: circleci/docker@1.5.0
+
 version: 2.1
 workflows:
   maven_test:
@@ -9,13 +10,13 @@ workflows:
           command: '-X clean'
       - maven/test:
           command: 'com.google.cloud.tools:jib-maven-plugin:0.9.7:dockerBuild -X'
-  build_and_push_image:
+
+  build-docker-image-only:
     jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: $ACCOUNT_URL
-          repo: casting
-          tag: 'latest'
-          aws-access-key-id: $AWS_ACCESS_KEY
-          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
-          aws-region: $AWS_REGION
-          create-repo: true
+      - pull:
+          executor: docker/machine
+          steps:
+            - checkout
+            - docker/push:
+                images: 'nishshukla/casting/com.waa-casting'
+                tag: 'latest'
