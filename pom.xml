@@ -211,7 +211,7 @@
           </from>
           <to>
             <image>
-              docker.io/nishshukla/casting/${project.groupId}-${project.artifactId}:${project.version}
+              331562417070.dkr.ecr.us-east-1.amazonaws.com/casting/${project.groupId}-${project.artifactId}:${project.version}
             </image>
           </to>
           <container>
