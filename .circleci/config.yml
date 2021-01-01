@@ -12,9 +12,9 @@ workflows:
   build_and_push_image:
     jobs:
       - aws-ecr/build-and-push-image:
-          account-url: 331562417070.dkr.ecr.us-east-1.amazonaws.com
-          repo: casting
+          account-url: '331562417070.dkr.ecr.us-east-1.amazonaws.com'
+          repo: 'casting'
           tag: 'latest'
-          aws-access-key-id: $AWS_ACCESS_KEY
-          aws-secret-access-key: $AWS_SECRET_ACCESS
+          aws-access-key-id: '$AWS_ACCESS_KEY'
+          aws-secret-access-key: '$AWS_SECRET_ACCESS'
           create-repo: true
