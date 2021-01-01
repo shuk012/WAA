@@ -3,32 +3,32 @@ version: 2.0
 jobs:
   checkout:
     docker:
-      - image: circleci/openjdk:stretch
+      - image: circleci/maven
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: sudo ./mvnw clean
+      - run: sudo mvnw clean
 
   build:
     docker:
-      - image: circleci/openjdk:stretch
+      - image: circleci/maven
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: sudo ./mvnw compile
+      - run: sudo mvn compile
 
   test:
     docker:
-      - image: circleci/openjdk:stretch
+      - image: circleci/maven
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      - test
+      - run: sudo mvn test
 
 workflows:
   version: 2
