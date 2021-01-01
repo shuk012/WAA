@@ -10,13 +10,12 @@ workflows:
           command: '-X clean'
       - maven/test:
           command: 'com.google.cloud.tools:jib-maven-plugin:0.9.7:dockerBuild -X'
-
-  build-docker-image-only:
-    jobs:
-      - push:
-          executor: docker/machine
-          steps:
-            - checkout
-            - docker/push:
-                images: 'nishshukla/casting/com.waa-casting'
-                tag: 'latest'
+      dockerize:
+        steps:
+          - setup_remote_docker:
+            version: 19.03.13
+            - run:
+                name: "Push and Run"
+                command: |
+                  echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                  docker push nishshukla/casting/com.waa-casting:latest
