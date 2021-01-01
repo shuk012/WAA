@@ -1,18 +1,17 @@
 orbs:
   maven: circleci/maven@1.0.3
   docker: circleci/docker@1.5.0
-
+parameters:
+  DOCKERHUB_USERNAME:
+    type: env_var_name
+    default: DOCKERHUB_USERNAME
+  DOCKERHUB_PASSWORD:
+    type: env_var_name
+    default: DOCKERHUB_PASSWORD
 version: 2.1
 workflows:
   maven_test:
     jobs:
-      parameters:
-        DOCKERHUB_USERNAME:
-          type: env_var_name
-          default: DOCKERHUB_USERNAME
-        DOCKERHUB_PASSWORD:
-          type: env_var_name
-          default: DOCKERHUB_PASSWORD
       steps:
         - maven/test:
             command: '-X clean'
