@@ -12,12 +12,12 @@ workflows:
           command: 'com.google.cloud.tools:jib-maven-plugin:0.9.7:dockerBuild -X'
   push-images:
     jobs:
-      push:
-        steps:
-          - setup_remote_docker:
-            version: 19.03.13
-          - run:
-              name: "Push and Run"
-              command: |
-                echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                docker push nishshukla/casting/com.waa-casting:latest
+      - push:
+          steps:
+            - setup_remote_docker:
+              version: 19.03.13
+            - run:
+                name: "Push and Run"
+                command: |
+                  echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                  docker push nishshukla/casting/com.waa-casting:latest
