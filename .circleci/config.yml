@@ -1,5 +1,6 @@
 orbs:
   maven: circleci/maven@1.0.3
+  aws-ecr: circleci/aws-ecr@6.15.2
 version: 2.1
 workflows:
   maven_test:
@@ -7,4 +8,10 @@ workflows:
       - maven/test:
           command: '-X clean'
       - maven/test:
-          command: '-X package'
+          command: 'com.google.cloud.tools:jib-maven-plugin:0.9.7:dockerBuild -X'
+  build_and_push_image:
+    jobs:
+      - aws-ecr/push-image:
+          account-url: 331562417070.dkr.ecr.us-east-1.amazonaws.com
+          repo: casting
+          tag: 'latest'

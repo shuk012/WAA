@@ -211,7 +211,7 @@
           </from>
           <to>
             <image>
-              registry-1.docker.io/nishshukla/casting/${project.groupId}-${project.artifactId}:${project.version}
+              registry-1.docker.io/nishshukla/casting/${project.groupId}-${project.artifactId}:latest
             </image>
           </to>
           <container>
