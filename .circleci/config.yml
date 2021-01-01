@@ -37,6 +37,6 @@ workflows:
     jobs:
       - checkout
       - build
-      - test:
+      - deploy:
           requires:
             - build
