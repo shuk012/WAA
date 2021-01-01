@@ -9,22 +9,23 @@ workflows:
           command: '-X clean'
       - maven/test:
           command: 'com.google.cloud.tools:jib-maven-plugin:0.9.7:dockerBuild -X'
-      build:
-        docker:
-          - image: circleci/golang:1.15
-            auth:
-              username: $DOCKERHUB_USERNAME
-              password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-        steps:
-          - checkout
-          # ... steps for building/testing app ...
-
-          - setup_remote_docker:
+  push-images:
+    jobs:
+      - build:
+         docker:
+           - image: circleci/golang:1.15
+             auth:
+               username: $DOCKERHUB_USERNAME
+               password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+         steps:
+           - checkout
+           # ... steps for building/testing app ...
+           - setup_remote_docker:
               version: 19.03.13
               docker_layer_caching: true
 
-          # build and push Docker image
-          - run: |
+            # build and push Docker image
+           - run: |
               TAG=LATEST
               echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
               docker push nishshukla/casting/com.waa-casting:$TAG
