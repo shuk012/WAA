@@ -36,7 +36,7 @@ workflows:
   build-then-test:
     jobs:
       - checkout
-      - test
-        requires:
-          - build
       - build
+      - test:
+          requires:
+            - build
