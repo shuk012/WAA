@@ -15,5 +15,5 @@ workflows:
           - docker/publish:
               image: nishshukla/casting
               update-description: true
-              docker-username: ${DOCKERHUB_USERNAME}
-              docker-password: ${DOCKERHUB_PASSWORD}
+              docker-username: $DOCKERHUB_USERNAME
+              docker-password: $DOCKERHUB_PASSWORD
