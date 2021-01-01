@@ -11,7 +11,10 @@ workflows:
           command: 'com.google.cloud.tools:jib-maven-plugin:0.9.7:dockerBuild -X'
   build_and_push_image:
     jobs:
-      - aws-ecr/push-image:
+      - aws-ecr/build-and-push-image:
           account-url: 331562417070.dkr.ecr.us-east-1.amazonaws.com
           repo: casting
           tag: 'latest'
+          aws-access-key-id: ${AWS_ACCESS_KEY}
+          aws-secret-access-key: ${AWS_SECRET_ACCESS}
+          create-repo: true
