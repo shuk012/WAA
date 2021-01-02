@@ -15,7 +15,7 @@ public class MainVerticle extends AbstractVerticle {
   static final Logger logger = LoggerFactory.getLogger(MainVerticle.class);
 
   public static void main(String[] args) {
-    var vertx = Vertx.vertx();
+    Vertx vertx = Vertx.vertx();
     Future<String> mainVerticleFuture = vertx.deployVerticle(MainVerticle.class.getName(), new DeploymentOptions().setInstances(getMaxProcessors()));
     mainVerticleFuture.onComplete(ar -> {
       if (ar.succeeded()) {

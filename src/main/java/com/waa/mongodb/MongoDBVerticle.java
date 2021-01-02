@@ -1,11 +1,14 @@
 package com.waa.mongodb;
 
+import com.mongodb.MongoClientURI;
 import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCursor;
+import io.netty.channel.EventLoopGroup;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
+import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
@@ -21,9 +24,14 @@ public class MongoDBVerticle extends AbstractVerticle {
 
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
-    var eventBus = vertx.eventBus();
-    final MongoClient mongoClient;
-    mongoClient = MongoClients.create();
+    EventBus eventBus = vertx.eventBus();
+    String template = "mongodb://%s:%s@%s/?replicaSet=rs0&readpreference=%s";
+    String username = "ec2user";
+    String password = "Nish12abcd!";
+    String clusterEndpoint = "docdb-2021-01-01-23-19-17.cluster-cae4ria95ugh.us-east-1.docdb.amazonaws.com:27017";
+    String readPreference = "secondaryPreferred";
+    String connectionString = String.format(template, username, password, clusterEndpoint, readPreference);
+    final MongoClient mongoClient = MongoClients.create(connectionString);
     final ClientSession mongoSession = null;
     eventBus.consumer("mongodb.getCollections", message -> processGetCollections(mongoClient, mongoSession, message));
     eventBus.consumer("mongodb.postCollection", message -> processInsertCollection(mongoClient, mongoSession, message));
